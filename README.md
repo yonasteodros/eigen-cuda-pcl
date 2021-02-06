@@ -4,7 +4,7 @@ This repository is created to show how to work with eigen and pcl on GPU:
   - Convert this points into PCL points in CUDA
   - On the official pcl::gpu defination added new function to avoid cudaDeviceSynchronize() when needed.
   
-<img src="/media/user/Data/programs/eigen-cuda-pcl/Sample/converted.png" alt="setting windows environment variable VICARIOS_LIB_PATH" width="500"/>
+<img src="Sample/converted.png" alt="generated points" width="500"/>
 
 ## Authors
 
