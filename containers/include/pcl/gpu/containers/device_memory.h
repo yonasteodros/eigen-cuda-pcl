@@ -105,6 +105,12 @@ namespace pcl
               * \param host_ptr_arg pointer to buffer to download               
               * */
             void downloadNotSynch(void *host_ptr_arg) const;
+            
+            
+            /** \brief Downloads data from internal buffer to CPU memory asynchronously
+              * \param host_ptr_arg pointer to buffer to download               
+              * */
+            void downloadAsync(void *host_ptr_arg) const;
 
 
             /** \brief Performs swap of data pointed with another device memory. 

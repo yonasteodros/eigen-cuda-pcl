@@ -58,7 +58,8 @@ void pcl::gpu::DeviceMemory::release() { throw_nogpu(); }
 void pcl::gpu::DeviceMemory::copyTo(DeviceMemory&) const { throw_nogpu(); }
 void pcl::gpu::DeviceMemory::upload(const void*, std::size_t) { throw_nogpu(); }
 void pcl::gpu::DeviceMemory::download(void*) const { throw_nogpu(); }
-void pcl::gpu::DeviceMemory::downloadNotSynch(void*) const { throw_nogpu(); }
+void pcl::gpu::DeviceMemory::downloadNotSynch(void*) const { throw_nogpu();
+void pcl::gpu::DeviceMemory::downloadAsync(void*) const { throw_nogpu();
 bool pcl::gpu::DeviceMemory::empty() const { throw_nogpu(); }
 pcl::gpu::DeviceMemory2D::DeviceMemory2D() { throw_nogpu(); }
 pcl::gpu::DeviceMemory2D::DeviceMemory2D(int, int)  { throw_nogpu(); }
@@ -184,7 +185,14 @@ void pcl::gpu::DeviceMemory::downloadNotSynch(void *host_ptr_arg) const
 {    
     cudaSafeCall( cudaMemcpy(host_ptr_arg, data_, sizeBytes_, cudaMemcpyDeviceToHost) );
     //cudaSafeCall( cudaDeviceSynchronize() );
-}           
+}      
+
+void pcl::gpu::DeviceMemory::downloadAsync(void *host_ptr_arg) const
+{    
+    cudaSafeCall( cudaMemcpyAsync(host_ptr_arg, data_, sizeBytes_, cudaMemcpyDeviceToHost, 0));
+    
+}  
+
 
 void pcl::gpu::DeviceMemory::swap(DeviceMemory& other_arg)
 {

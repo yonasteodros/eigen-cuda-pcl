@@ -111,6 +111,11 @@ namespace pcl
               * \param host_ptr pointer to buffer to download               
               * */
             void downloadNotSynch(T *host_ptr) const;
+            
+            /** \brief Downloads data from internal buffer to CPU memory asynchronously
+              * \param host_ptr pointer to buffer to download               
+              * */
+            void downloadAsync(T *host_ptr) const;
 
             
             /** \brief Uploads data to internal buffer in GPU memory. It calls create() inside to ensure that intenal buffer size is enough.
@@ -131,6 +136,13 @@ namespace pcl
                * */
             template<typename A>
             void downloadNotSynch(std::vector<T, A>& data) const;
+            
+            /** \brief Downloads data from internal buffer to CPU memory asynchronously
+               * \param data  host vector to download to                 
+               * */
+            template<typename A>
+            void downloadAsync(std::vector<T, A>& data) const;
+            
             
 
             /** \brief Performs swap of data pointed with another device array. 

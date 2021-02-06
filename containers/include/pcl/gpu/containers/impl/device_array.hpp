@@ -60,6 +60,8 @@ template<class T> inline void pcl::gpu::DeviceArray<T>::download(T *host_ptr) co
 { DeviceMemory::download( host_ptr ); }
 template<class T> inline void pcl::gpu::DeviceArray<T>::downloadNotSynch(T *host_ptr) const 
 { DeviceMemory::downloadNotSynch( host_ptr ); }
+template<class T> inline void pcl::gpu::DeviceArray<T>::downloadAsync(T *host_ptr) const
+{ DeviceMemory::downloadAsync( host_ptr ); }
 
 template<class T> void pcl::gpu::DeviceArray<T>::swap(DeviceArray& other_arg) { DeviceMemory::swap(other_arg); }
 
@@ -73,6 +75,8 @@ template<class T> inline const T* pcl::gpu::DeviceArray<T>::ptr() const { return
 template<class T> template<class A> inline void pcl::gpu::DeviceArray<T>::upload(const std::vector<T, A>& data) { upload(&data[0], data.size()); }
 template<class T> template<class A> inline void pcl::gpu::DeviceArray<T>::download(std::vector<T, A>& data) const { data.resize(size()); if (!data.empty()) download(&data[0]); }
 template<class T> template<class A> inline void pcl::gpu::DeviceArray<T>::downloadNotSynch(std::vector<T, A>& data) const { data.resize(size()); if (!data.empty()) downloadNotSynch(&data[0]); }
+template<class T> template<class A> inline void pcl::gpu::DeviceArray<T>::downloadAsync(std::vector<T, A>& data) const { data.resize(size()); if (!data.empty()) downloadAsync(&data[0]); }
+
 
 /////////////////////  Inline implementations of DeviceArray2D ////////////////////////////////////////////
 
