@@ -105,6 +105,13 @@ namespace pcl
               * \param host_ptr pointer to buffer to download               
               * */
             void download(T *host_ptr) const;
+
+
+            /** \brief Downloads data from internal buffer to CPU memory without cudaDeviceSynchronize
+              * \param host_ptr pointer to buffer to download               
+              * */
+            void downloadNotSynch(T *host_ptr) const;
+
             
             /** \brief Uploads data to internal buffer in GPU memory. It calls create() inside to ensure that intenal buffer size is enough.
               * \param data host vector to upload from              
@@ -118,7 +125,13 @@ namespace pcl
             template<typename A>
             void download(std::vector<T, A>& data) const;
 
-          
+
+              /** \brief Downloads data from internal buffer to CPU memory
+               * \param data  host vector to download to                 
+               * */
+            template<typename A>
+            void downloadNotSynch(std::vector<T, A>& data) const;
+            
 
             /** \brief Performs swap of data pointed with another device array. 
               * \param other_arg device array to swap with   
